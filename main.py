@@ -44,7 +44,7 @@ def run_tests():
 
     # --- Valuation History ---
     print("\n[TEST 5] Get valuation history for property id=3:")
-    pretty(get_valuation_history(5))
+    pretty(get_valuation_history(3))
 
     # --- Assessment ---
     print("\n[TEST 6] Get assessment for property id=2, year=2024:")
