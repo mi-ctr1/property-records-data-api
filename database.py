@@ -72,10 +72,19 @@ def seed_data():
     conn = get_connection()
     cursor = conn.cursor()
 
+    # ✦ ADDED — Clear existing data before seeding to prevent duplicates
+    # on re-runs
+    cursor.execute("DELETE FROM assessments")
+    cursor.execute("DELETE FROM valuations")
+    cursor.execute("DELETE FROM owners")
+    cursor.execute("DELETE FROM properties")
+    # ✦ ADDED — Reset autoincrement counters so IDs start from 1 each run
+    cursor.execute("DELETE FROM sqlite_sequence")
+
     # --- Properties ---
     properties = [
         ("100 Pikachu Lane", "Single Family", 3, 2.0, 1450, "For Sale"),
-        ("102 Squirtle Street", "Condo", 2, 1.0,  890, "For Sale"),
+        ("102 Squirtle Street", "Condo", 2, 1.0, 890, "For Sale"),
         ("104 Balbasaur Ave", "Single Family", 4, 3.0, 2100, "Sold"),
     ]
 
@@ -87,9 +96,9 @@ def seed_data():
 
     # --- Owners (one per property, property_id matches insertion order) ---
     owners = [
-        (1,  "Sandra Cole", "2019-06-15"),
-        (2,  "James Whitfield", "2021-03-22"),
-        (3,  "Priya Nair", "2017-11-01"),
+        (1, "Sandra Cole", "2019-06-15"),
+        (2, "James Whitfield", "2021-03-22"),
+        (3, "Priya Nair", "2017-11-01"),
     ]
 
     cursor.executemany("""
@@ -111,14 +120,14 @@ def seed_data():
 
     # --- Assessments (one per property per tax year) ---
     assessments = [
-        (1,  255000,  80000, 2024),
-        (2,  158000,  50000, 2024),
-        (3,  390000, 110000, 2024),
+        (1, 255000, 80000, 2024),
+        (2, 158000, 50000, 2024),
+        (3, 390000, 110000, 2024),
     ]
 
     cursor.executemany("""
-        INSERT INTO assessments (property_id, assessed_value, land_value,
-        tax_year)
+        INSERT INTO assessments
+            (property_id, assessed_value, land_value, tax_year)
         VALUES (?, ?, ?, ?)
     """, assessments)
 
@@ -131,7 +140,7 @@ def initialize_database():
     """Runs full setup: creates tables and seeds data."""
     create_tables()
     seed_data()
-    print("Maplewood database ready.")
+    print("Pokemon Properties database ready.")
 
 
 if __name__ == "__main__":
