@@ -14,7 +14,7 @@ Four related tables connected by `property_id`:
 
 | Table | Description |
 |---|---|
-| `properties` | Core property details — address, type, size, status |
+| `properties` | Core property details: address, type, size, status |
 | `owners` | Ownership records linked to each property |
 | `valuations` | Market value history over time |
 | `assessments` | Tax assessment data by year |
@@ -75,7 +75,7 @@ property-records-data-api/
 [SETUP] Initializing database...
 Tables created.
 Sample data seeded.
-Maplewood database ready.
+Pokemon Properties database ready.
 
 [TEST 1] Get all properties:
 [
