@@ -1,4 +1,4 @@
-# Pokemon Properties Data API
+# Structured Data API for Property Records
 
 A lightweight REST-style API for storing and retrieving structured property record data. Built with Python, SQLite, and Flask.
 
